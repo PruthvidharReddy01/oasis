@@ -26,7 +26,7 @@ import Bootstrap from '../scenes/Bootstrap'
 const MessageText = styled.p`
   margin: 10px;
   font-size: 18px;
-  color: #eee;
+  color: black;
   text-align: center;
 `
 

@@ -29,7 +29,7 @@ const Backdrop = styled.div`
 `
 
 const Wrapper = styled.div`
-  background: #222639;
+  background:rgb(255, 255, 255);
   border-radius: 16px;
   padding: 36px 60px;
   box-shadow: 0px 0px 5px #0000006f;
@@ -69,8 +69,9 @@ const TitleWrapper = styled.div`
 
 const Title = styled.h1`
   font-size: 24px;
-  color: #eee;
+  color: black;
   text-align: center;
+  font-family: 'Heming';
 `
 
 const Content = styled.div`
@@ -171,7 +172,7 @@ export default function RoomSelectionDialog() {
               <CustomRoomTable />
               <Button
                 variant="contained"
-                color="secondary"
+                color="primary"
                 onClick={() => setShowCreateRoomForm(true)}
               >
                 Create new room
@@ -179,15 +180,15 @@ export default function RoomSelectionDialog() {
             </CustomRoomWrapper>
           ) : (
             <>
-              <Title>Welcome to SkyOffice</Title>
+              <Title>Welcome to OASIS</Title>
               <Content>
                 <img src={logo} alt="logo" />
-                <Button variant="contained" color="secondary" onClick={handleConnect}>
+                <Button variant="contained" sx={{  backgroundColor: '#8c51fe', '&:hover': { backgroundColor: '#7243cc' } }} onClick={handleConnect}>
                   Connect to public lobby
                 </Button>
                 <Button
                   variant="outlined"
-                  color="secondary"
+                  color="primary"
                   onClick={() => (lobbyJoined ? setShowCustomRoom(true) : setShowSnackbar(true))}
                 >
                   Create/find custom rooms

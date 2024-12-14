@@ -60,22 +60,70 @@ export const CreateRoomForm = () => {
       <TextField
         label="Name"
         variant="outlined"
-        color="secondary"
         autoFocus
         error={nameFieldEmpty}
         helperText={nameFieldEmpty && 'Name is required'}
         onChange={handleChange('name')}
+        sx={{
+          '& .MuiInputBase-input': {
+            color: 'black', 
+          },
+          '& .MuiInputBase-inputMultiline': {
+            color: 'black', 
+          },
+          '& .MuiFormLabel-root': {
+            color: 'black', 
+          },
+          '& .MuiFormHelperText-root': {
+            color: 'black', 
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'primary.main', // Border color
+            },
+            '&:hover fieldset': {
+              borderColor: 'primary.dark', // Border color on hover
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'primary.main', // Border color when focused
+            },
+          },
+        }}
       />
 
       <TextField
         label="Description"
         variant="outlined"
-        color="secondary"
         error={descriptionFieldEmpty}
         helperText={descriptionFieldEmpty && 'Description is required'}
         multiline
         rows={4}
         onChange={handleChange('description')}
+        sx={{
+          '& .MuiInputBase-input': {
+            color: 'black', 
+          },
+          '& .MuiInputBase-inputMultiline': {
+            color: 'black', 
+          },
+          '& .MuiFormLabel-root': {
+            color: 'black', 
+          },
+          '& .MuiFormHelperText-root': {
+            color: 'black', 
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'primary.main', // Border color
+            },
+            '&:hover fieldset': {
+              borderColor: 'primary.dark', // Border color on hover
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'primary.main', // Border color when focused
+            },
+          },
+        }}
       />
 
       <TextField
@@ -96,8 +144,33 @@ export const CreateRoomForm = () => {
             </InputAdornment>
           ),
         }}
+        sx={{
+          '& .MuiInputBase-input': {
+            color: 'black', // Text color
+          },
+          '& .MuiInputBase-inputMultiline': {
+            color: 'black', // Text color for multiline
+          },
+          '& .MuiFormLabel-root': {
+            color: 'black', // Label color when not focused
+          },
+          '& .MuiFormLabel-root.Mui-focused': {
+            color: 'black', // Label color when focused
+          },
+          '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+              borderColor: 'primary.main', // Border color
+            },
+            '&:hover fieldset': {
+              borderColor: 'primary.dark', // Border color on hover
+            },
+            '&.Mui-focused fieldset': {
+              borderColor: 'primary.main', // Border color when focused
+            },
+          },
+        }}
       />
-      <Button variant="contained" color="secondary" type="submit">
+      <Button variant="contained" color="primary" type="submit">
         Create
       </Button>
     </CreateRoomFormWrapper>

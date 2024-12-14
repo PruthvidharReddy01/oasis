@@ -22,13 +22,14 @@ import { getAvatarString, getColorByString } from '../util'
 
 import phaserGame from '../PhaserGame'
 import Game from '../scenes/Game'
+import { colors } from '@mui/material'
 
 const Wrapper = styled.form`
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: #222639;
+  background: #ffffff;
   border-radius: 16px;
   padding: 36px 60px;
   box-shadow: 0px 0px 5px #0000006f;
@@ -37,8 +38,9 @@ const Wrapper = styled.form`
 const Title = styled.p`
   margin: 5px;
   font-size: 20px;
-  color: #c2c2c2;
+  color: #000000;
   text-align: center;
+  font-family: 'Heming';
 `
 
 const RoomName = styled.div`
@@ -71,8 +73,9 @@ const RoomDescription = styled.div`
 const SubTitle = styled.h3`
   width: 160px;
   font-size: 16px;
-  color: #eee;
+  color: #000;
   text-align: center;
+  font-family: 'Heming';
 `
 
 const Content = styled.div`
@@ -172,11 +175,12 @@ export default function LoginDialog() {
         <Avatar style={{ background: getColorByString(roomName) }}>
           {getAvatarString(roomName)}
         </Avatar>
-        <h3>{roomName}</h3>
+        <h3 style={{ color: 'black', fontFamily:'Heming' }}>{roomName}</h3>
       </RoomName>
-      <RoomDescription>
-        <ArrowRightIcon /> {roomDescription}
-      </RoomDescription>
+      <RoomDescription style={{ color: '#333', fontFamily: 'Heming' }}>
+  <ArrowRightIcon /> {roomDescription}
+</RoomDescription>
+
       <Content>
         <Left>
           <SubTitle>Select an avatar</SubTitle>
@@ -202,22 +206,47 @@ export default function LoginDialog() {
             fullWidth
             label="Name"
             variant="outlined"
-            color="secondary"
+            
             error={nameFieldEmpty}
             helperText={nameFieldEmpty && 'Name is required'}
             onInput={(e) => {
               setName((e.target as HTMLInputElement).value)
             }}
+            sx={{
+              '& .MuiInputBase-input': {
+                color: 'black', // Text color
+              },
+              '& .MuiInputBase-inputMultiline': {
+                color: 'black', // Text color for multiline
+              },
+              '& .MuiFormLabel-root': {
+                color: 'black', // Label color when not focused
+              },
+              '& .MuiFormLabel-root.Mui-focused': {
+                color: 'black', // Label color when focused
+              },
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: 'primary.main', // Border color
+                },
+                '&:hover fieldset': {
+                  borderColor: 'primary.dark', // Border color on hover
+                },
+                '&.Mui-focused fieldset': {
+                  borderColor: 'primary.main', // Border color when focused
+                },
+              },
+            }}
           />
           {!videoConnected && (
-            <Warning>
-              <Alert variant="outlined" severity="warning">
-                <AlertTitle>Warning</AlertTitle>
+            <Warning >
+              <Alert variant="outlined" severity="warning" >
+                <AlertTitle >Warning</AlertTitle>
                 No webcam/mic connected - <strong>connect one for best experience!</strong>
               </Alert>
               <Button
                 variant="outlined"
-                color="secondary"
+                color="primary"
                 onClick={() => {
                   game.network.webRTC?.getUserMedia()
                 }}
@@ -235,7 +264,7 @@ export default function LoginDialog() {
         </Right>
       </Content>
       <Bottom>
-        <Button variant="contained" color="secondary" size="large" type="submit">
+        <Button variant="contained" color="primary" size="large" type="submit">
           Join
         </Button>
       </Bottom>

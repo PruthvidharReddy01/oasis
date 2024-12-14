@@ -43,7 +43,7 @@ const FabWrapper = styled.div`
 const ChatHeader = styled.div`
   position: relative;
   height: 35px;
-  background: #000000a7;
+  background: #8c51fe;
   border-radius: 10px 10px 0px 0px;
 
   h3 {
@@ -51,6 +51,7 @@ const ChatHeader = styled.div`
     margin: 7px;
     font-size: 17px;
     text-align: center;
+    font-family: 'Heming';
   }
 
   .close {
@@ -58,13 +59,14 @@ const ChatHeader = styled.div`
     top: 0;
     right: 0;
   }
+  
 `
 
 const ChatBox = styled(Box)`
   height: 100%;
   width: 100%;
   overflow: auto;
-  background: #2c2c2c;
+  background: #ffffff;
   border: 1px solid #00000029;
 `
 
@@ -83,7 +85,7 @@ const MessageWrapper = styled.div`
   }
 
   span {
-    color: white;
+    color: black;
     font-weight: normal;
   }
 
@@ -93,17 +95,17 @@ const MessageWrapper = styled.div`
   }
 
   :hover {
-    background: #3a3a3a;
+    background:rgba(139, 81, 254, 0.38);
   }
 `
 
 const InputWrapper = styled.form`
   box-shadow: 10px 10px 10px #00000018;
-  border: 1px solid #42eacb;
+  border: 1px solid #8c51fe;
   border-radius: 0px 0px 10px 10px;
   display: flex;
   flex-direction: row;
-  background: linear-gradient(180deg, #000000c1, #242424c0);
+  background: linear-gradient(180deg, #8c51fe,rgb(83, 35, 179));
 `
 
 const InputTextField = styled(InputBase)`

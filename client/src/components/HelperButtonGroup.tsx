@@ -179,53 +179,7 @@ export default function HelperButtonGroup() {
           </Wrapper>
         )}
       </div>
-      <ButtonGroup>
-        {roomJoined && (
-          <>
-            <Tooltip title="Room Info">
-              <StyledFab
-                size="small"
-                onClick={() => {
-                  setShowRoomInfo(!showRoomInfo)
-                  setShowControlGuide(false)
-                }}
-              >
-                <ShareIcon />
-              </StyledFab>
-            </Tooltip>
-            <Tooltip title="Control Guide">
-              <StyledFab
-                size="small"
-                onClick={() => {
-                  setShowControlGuide(!showControlGuide)
-                  setShowRoomInfo(false)
-                }}
-              >
-                <HelpOutlineIcon />
-              </StyledFab>
-            </Tooltip>
-          </>
-        )}
-        <Tooltip title="Visit Our GitHub">
-          <StyledFab
-            size="small"
-            href="https://github.com/kevinshen56714/SkyOffice"
-            target="_blank"
-          >
-            <GitHubIcon />
-          </StyledFab>
-        </Tooltip>
-        <Tooltip title="Follow Us on Twitter">
-          <StyledFab size="small" href="https://twitter.com/SkyOfficeApp" target="_blank">
-            <TwitterIcon />
-          </StyledFab>
-        </Tooltip>
-        <Tooltip title="Switch Background Theme">
-          <StyledFab size="small" onClick={() => dispatch(toggleBackgroundMode())}>
-            {backgroundMode === BackgroundMode.DAY ? <DarkModeIcon /> : <LightModeIcon />}
-          </StyledFab>
-        </Tooltip>
-      </ButtonGroup>
+     
     </Backdrop>
   )
 }
