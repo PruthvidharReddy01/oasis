@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import CloseIcon from '@mui/icons-material/Close'
+import ScreenShareIcon from '@mui/icons-material/ScreenShare'
+import StopScreenShareIcon from '@mui/icons-material/StopScreenShare'
 
 import { useAppSelector, useAppDispatch } from '../hooks'
 import { closeComputerDialog } from '../stores/ComputerStore'
@@ -16,15 +17,16 @@ const Backdrop = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  padding: 16px 180px 16px 16px;
+  padding: 16px 250px 16px 16px;
 `
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  background: #222639;
+  background:rgb(218, 218, 218);
   border-radius: 16px;
   padding: 16px;
   color: #eee;
+  left: 50px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -34,6 +36,7 @@ const Wrapper = styled.div`
     position: absolute;
     top: 0px;
     right: 0px;
+    
   }
 `
 
@@ -74,6 +77,13 @@ const VideoGrid = styled.div`
   }
 `
 
+const IconTextWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  color: #000000;
+
+`
+
 function VideoContainer({ playerName, stream }) {
   return (
     <div className="video-container">
@@ -97,24 +107,32 @@ export default function ComputerDialog() {
           aria-label="close dialog"
           className="close"
           onClick={() => dispatch(closeComputerDialog())}
+          style={{color: 'black'}}
         >
           <CloseIcon />
         </IconButton>
 
         <div className="toolbar">
-          <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => {
-              if (shareScreenManager?.myStream) {
-                shareScreenManager?.stopScreenShare()
-              } else {
-                shareScreenManager?.startScreenShare()
-              }
-            }}
-          >
-            {shareScreenManager?.myStream ? 'Stop sharing' : 'Share Screen'}
-          </Button>
+          <IconTextWrapper>
+            <IconButton
+              color="primary"
+              onClick={() => {
+                if (shareScreenManager?.myStream) {
+                  shareScreenManager?.stopScreenShare()
+                } else {
+                  shareScreenManager?.startScreenShare()
+                }
+              }}
+              aria-label="toggle screen share"
+            >
+              {shareScreenManager?.myStream ? (
+                <StopScreenShareIcon />
+              ) : (
+                <ScreenShareIcon />
+              )}
+            </IconButton>
+            <span style={{fontFamily:'Heming',marginLeft:'10px'}}>Click to Share Screen</span>
+          </IconTextWrapper>
         </div>
 
         <VideoGrid>

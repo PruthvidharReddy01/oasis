@@ -13,7 +13,7 @@ const Backdrop = styled.div`
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  padding: 16px 180px 16px 16px;
+  padding: 20px 250px 16px 16px;
   width: 100%;
   height: 100%;
 `
@@ -22,8 +22,9 @@ const Wrapper = styled.div`
   height: 100%;
   background: #222639;
   border-radius: 16px;
-  padding: 16px;
+  padding: 20px;
   color: #eee;
+  left: 50px;
   position: relative;
   display: flex;
   flex-direction: column;

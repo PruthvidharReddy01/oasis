@@ -239,8 +239,14 @@ export default function LoginDialog() {
             }}
           />
           {!videoConnected && (
-            <Warning >
-              <Alert variant="outlined" severity="warning" >
+            <Warning
+            style={{ 
+              backgroundColor: 'rgba(128, 128, 128, 0.2)', // Grey color with low opacity 
+              padding: '1rem', 
+              borderRadius: '8px'
+               
+            }} >
+              <Alert variant="outlined" severity="warning" style={{color: '#ffa726'}}>
                 <AlertTitle >Warning</AlertTitle>
                 No webcam/mic connected - <strong>connect one for best experience!</strong>
               </Alert>

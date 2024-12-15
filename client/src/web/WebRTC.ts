@@ -1,6 +1,8 @@
 import Peer from 'peerjs'
 import Network from '../services/Network'
 import store from '../stores'
+import { IconButton } from '@mui/material';
+import { Mic, MicOff, Videocam, VideocamOff } from '@mui/icons-material';
 import { setVideoConnected } from '../stores/UserStore'
 
 export default class WebRTC {
@@ -132,35 +134,93 @@ export default class WebRTC {
 
   // method to set up mute/unmute and video on/off buttons
   setUpButtons() {
-    const audioButton = document.createElement('button')
-    audioButton.innerText = 'Mute'
-    audioButton.addEventListener('click', () => {
-      if (this.myStream) {
-        const audioTrack = this.myStream.getAudioTracks()[0]
-        if (audioTrack.enabled) {
-          audioTrack.enabled = false
-          audioButton.innerText = 'Unmute'
-        } else {
-          audioTrack.enabled = true
-          audioButton.innerText = 'Mute'
-        }
-      }
-    })
-    const videoButton = document.createElement('button')
-    videoButton.innerText = 'Video off'
-    videoButton.addEventListener('click', () => {
-      if (this.myStream) {
-        const audioTrack = this.myStream.getVideoTracks()[0]
-        if (audioTrack.enabled) {
-          audioTrack.enabled = false
-          videoButton.innerText = 'Video on'
-        } else {
-          audioTrack.enabled = true
-          videoButton.innerText = 'Video off'
-        }
-      }
-    })
-    this.buttonGrid?.append(audioButton)
-    this.buttonGrid?.append(videoButton)
+    // Create a container for both buttons
+const buttonsContainer = document.createElement('div');
+buttonsContainer.style.position = 'fixed'; // Fixed positioning
+buttonsContainer.style.bottom = '20px'; // Distance from the bottom
+buttonsContainer.style.left = '50%'; // Center horizontally
+buttonsContainer.style.transform = 'translateX(-50%)'; // Offset to center the container
+buttonsContainer.style.display = 'flex'; // Flex to align buttons horizontally
+buttonsContainer.style.gap = '20px'; // Space between the buttons
+buttonsContainer.style.zIndex = '999'; // Ensure buttons stay on top of other elements
+
+// Create audio button
+const audioButton = document.createElement('button');
+
+// Set the icon for the button
+const audioIcon = document.createElement('i');
+audioIcon.className = 'fas fa-microphone'; // Default icon for microphone
+audioButton.appendChild(audioIcon);
+
+// Apply styles to the audio button
+audioButton.style.background = 'linear-gradient(180deg, #8c51fe, rgb(83, 35, 179))'; // Purple background
+audioButton.style.border = '2px solid white'; // No border
+audioButton.style.borderRadius = '50%'; // Circular shape
+audioButton.style.padding = '9px'; // Padding for spacing
+audioButton.style.cursor = 'pointer'; // Pointer cursor for click action
+audioButton.style.display = 'flex'; // Flex to center the icon
+audioButton.style.alignItems = 'center'; // Center the icon vertically
+audioButton.style.justifyContent = 'center'; // Center the icon horizontally
+audioButton.style.width = '40px'; // Width of the button
+audioButton.style.height = '40px'; // Height of the button
+audioButton.style.color = 'white';
+
+// Event listener for mute/unmute
+audioButton.addEventListener('click', () => {
+  if (this.myStream) {
+    const audioTrack = this.myStream.getAudioTracks()[0];
+    if (audioTrack.enabled) {
+      audioTrack.enabled = false;
+      audioIcon.className = 'fas fa-microphone-slash'; // Change to muted icon
+    } else {
+      audioTrack.enabled = true;
+      audioIcon.className = 'fas fa-microphone'; // Change to unmuted icon
+    }
+  }
+});
+
+// Create video button
+const videoButton = document.createElement('button');
+
+// Set the icon for the button
+const videoIcon = document.createElement('i');
+videoIcon.className = 'fas fa-video'; // Default icon for video
+videoButton.appendChild(videoIcon);
+
+// Apply styles to the video button
+videoButton.style.background = 'linear-gradient(180deg, #8c51fe, rgb(83, 35, 179))'; // Purple background
+videoButton.style.border = '2px solid white'; // No border
+videoButton.style.borderRadius = '50%'; // Circular shape
+videoButton.style.padding = '9px'; // Padding for spacing
+videoButton.style.cursor = 'pointer'; // Pointer cursor for click action
+videoButton.style.display = 'flex'; // Flex to center the icon
+videoButton.style.alignItems = 'center'; // Center the icon vertically
+videoButton.style.justifyContent = 'center'; // Center the icon horizontally
+videoButton.style.width = '40px'; // Width of the button
+videoButton.style.height = '40px'; // Height of the button
+videoButton.style.color = 'white';
+
+// Event listener for video on/off
+videoButton.addEventListener('click', () => {
+  if (this.myStream) {
+    const videoTrack = this.myStream.getVideoTracks()[0];
+    if (videoTrack.enabled) {
+      videoTrack.enabled = false;
+      videoIcon.className = 'fas fa-video-slash'; // Change to video off icon
+    } else {
+      videoTrack.enabled = true;
+      videoIcon.className = 'fas fa-video'; // Change to video on icon
+    }
+  }
+});
+
+// Append both buttons to the container
+buttonsContainer.appendChild(audioButton);
+buttonsContainer.appendChild(videoButton);
+
+// Append the container to the document body
+document.body.appendChild(buttonsContainer);
+
+
   }
 }
